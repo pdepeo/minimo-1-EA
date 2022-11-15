@@ -31,7 +31,7 @@ export class ValoracionComponent implements OnInit {
 	  password:"",
 	  birthdate:new Date(),
 	  email:"",
-    valoracion: []
+    valoraciones: []
 
   }
 
@@ -80,5 +80,4 @@ export class ValoracionComponent implements OnInit {
     this.submitted= true;
 
   }
-
 }

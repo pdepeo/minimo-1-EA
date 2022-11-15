@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { User } from '../../models/User';
+import { Valoracion } from 'src/app/models/Valoracion';
 
 @Component({
   selector: 'app-userlist',
@@ -16,6 +17,7 @@ export class UserListComponent implements OnInit {
   submitted = false;
   clickCreateEvent: boolean;
   listUsers : User[] = [];
+  listValoraciones: Valoracion [] = [];
   
 
   constructor(private formBuilder: FormBuilder, private _router: Router) { 
@@ -31,6 +33,7 @@ export class UserListComponent implements OnInit {
 		const response = axios.get(`http://localhost:5432/api/users/`, {
 		}).then((response) => {
       this.listUsers = response.data;
+      // this.listValoraciones = this.listUsers.at;
 		}).catch((error) => {
 			console.log(error);
 		});

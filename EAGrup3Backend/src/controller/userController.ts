@@ -81,19 +81,39 @@ const deleteUser = async (req: Request, res: Response) => {
 	}
 };
 
- export async function valorar (req:Request, res: Response): Promise<Response> {
+const getValoracion = async (req: Request, res: Response) => {
+	const valoracion = await Valoracion.findById(req.params.id);
+	res.json(valoracion);
+};
 
-		console.log(req.body);
-		const {puntos, comment, _id} = req.body;
+ export async function valorar (req:Request, res: Response): Promise<Response> {
+try {
+		
+		
+		const puntos = req.body.puntos;
+		const comment = req.body.comment;
+
+		console.log(puntos + " prueba 1" + comment + " prueba 1")
+
 		// const puntos = req.body.puntos;
 		// const comment = req.body.comment;
+		
 		const newValoracion = new Valoracion({puntos, comment})
+
+		console.log(newValoracion + "prueba 2");
 
 		const valoracionSaved = await newValoracion.save()
 	//   const user = await User.findByIdAndUpdate(req.params._id, {
 	// 		newValoracion}, {new: true});
-		const user = await User.findOneAndUpdate({_id: req.params._id},{$push: {valoraciones: valoracionSaved}})
-		return res.status(200).json(user);
+		
+	const user = await User.findOneAndUpdate({_id: req.body._id},{$push: {valoraciones: valoracionSaved}})
+	
+		return res.status(200).json(user.valoraciones)
+	
+}
+catch(error) {
+	return res.status(400).json(error)
+}
 
 }
 	
@@ -123,5 +143,6 @@ export default {
 	getone,
 	deleteUser,
 	update,
-	valorar
+	valorar,
+
 };

@@ -30,7 +30,7 @@ export class UsersUpdateComponent implements OnInit {
 	  password:"",
 	  birthdate:new Date(),
 	  email:"",
-    valoracion: []
+    valoraciones: []
   }
   constructor(private formBuilder: FormBuilder, private _router: Router, private activedRoute: ActivatedRoute) {
     this.registerForm = this.formBuilder.group({});
