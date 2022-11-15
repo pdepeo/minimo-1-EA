@@ -1,0 +1,15 @@
+<div class="login-container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="padding-bottom: 20px; width: 450px;" class="register" [style]="clickRegister ? 'margin-left: 0vw' : ''">
+        <span class="login-header">Valoracion</span>
+        <label style=" margin-bottom: 20px;">Puntos:<input formControlName="puntos" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.puntos.errors }" [style]="submitted && registerForm.controls.puntos.errors ? 'outline: 1px solid #b30000;' : ''" type="text" [(ngModel)]="valoracion.puntos" ></label>
+        <div *ngIf="submitted && registerForm.controls.puntos.errors" class="validation-error">
+            <!--<div *ngIf="registerForm.controls.name.errors.required">Is required</div>-->
+        </div>
+    
+        <label style=" margin-bottom: 0px;">Comment:<input [style]="submitted && registerForm.controls.comment.errors ? 'outline: 1px solid #b30000;' : ''" formControlName="comment" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.comment.errors }" type="text" [(ngModel)]="valoracion.comment"></label>
+        <div style="margin-top: 3px;">
+            <!--<div *ngIf="registerForm.controls.email.errors.required">Is required</div>-->
+        </div>
+        <button class="login-button" (click)="valorar()"><b>Valorar</b></button>
+    </form>
+    </div>

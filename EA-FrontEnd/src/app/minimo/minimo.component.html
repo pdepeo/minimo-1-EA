@@ -1,0 +1,22 @@
+<div class="minimo-container">
+    <form [formGroup]="minimoForm" (ngSubmit)="onSubmit()" style="padding-bottom: 20px; width: 450px;" class="minimo">
+        <span class="minimo-header">Create Minimo</span>
+            <label style=" margin-bottom: 20px;">Title:<input formControlName="title" [ngClass]="{ 'is-invalid': submitted && minimoForm.controls.title.errors }" [style]="submitted && minimoForm.controls.title.errors ? 'outline: 1px solid #b30000;' : ''" type="text" placeholder="Title" ></label>
+            <div *ngIf="submitted && minimoForm.controls.title.errors" class="validation-error">               
+                <div *ngIf="minimoForm.controls.title.errors.required">Is required</div>
+            </div>
+            <label style=" margin-bottom: 20px;">Overview:<input formControlName="overview" [ngClass]="{ 'is-invalid': submitted && minimoForm.controls.overview.errors }" [style]="submitted && minimoForm.controls.overview.errors ? 'outline: 1px solid #b30000;' : ''" type="text" placeholder="Overview" ></label>
+            <div *ngIf="submitted && minimoForm.controls.overview.errors" class="validation-error">               
+                <div *ngIf="minimoForm.controls.overview.errors.required">Is required</div>
+            </div>
+            <label style=" margin-bottom: 20px;">Poster path:<input formControlName="poster_path" [ngClass]="{ 'is-invalid': submitted && minimoForm.controls.poster_path.errors }" [style]="submitted && minimoForm.controls.poster_path.errors ? 'outline: 1px solid #b30000;' : ''" type="text" placeholder="Poster_path" ></label>
+            <div *ngIf="submitted && minimoForm.controls.poster_path.errors" class="validation-error">               
+                <div *ngIf="minimoForm.controls.poster_path.errors.required">Is required</div>
+            </div>
+        <div style="width: 62%; display: inline-flex; justify-content: center; margin-bottom: 20px;">
+        <div style="margin-right: 4%; display: flex; flex-direction: column; width: 62%;">
+        </div>
+		</div>
+        <button class="create-minimo-button" (click)="sendCreateMinimo()"><b>Crear Minimo</b></button>
+    </form>
+</div>

@@ -51,5 +51,7 @@ export class UserListComponent implements OnInit {
     this._router.navigate([`/users-update/${id}`])
   }
 
-
+  valorarUser(id: String){
+    this._router.navigate([`valoracion/${id}`])
+  }
 }

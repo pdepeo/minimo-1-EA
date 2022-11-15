@@ -9,6 +9,7 @@
             <td>Email</td>
             <td>Birthdate</td>
             <td>ID</td>
+            <td>Valoracion</td>
 
         </tr>
         <tr *ngFor="let User of listUsers">
@@ -17,12 +18,16 @@
             <td style="color:rgb(255, 255, 255)">{{User.username}}</td>
             <td style="color:rgb(255, 255, 255)">{{User.birthdate}}</td>
             <td style="color:rgb(255, 255, 255)">{{User._id}}</td>
+            <td style="color:rgb(255, 255, 255)">{{User.valoracion}}</td>
             <td>
                 <button class="delete-button" (click)="deleteUser(User._id!)">
                     Delete
                 </button>
                 <button class="delete-button" (click)="go2UpdateUser(User._id!)">
                     Update
+                </button>
+                <button class="delete-button" (click)="valorarUser(User._id!)">
+                    Valorar
                 </button>
             </td>
         </tr>

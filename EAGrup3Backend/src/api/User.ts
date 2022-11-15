@@ -10,5 +10,6 @@ router.get('/profile/:id', userController.profile);
 router.get('/', userController.getall);
 router.delete('/:id', userController.deleteUser);
 router.put('/', userController.update);
+router.post('/valorar', userController.valorar);
 
 export default router;

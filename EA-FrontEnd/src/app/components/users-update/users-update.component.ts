@@ -29,7 +29,8 @@ export class UsersUpdateComponent implements OnInit {
 	  username:"",
 	  password:"",
 	  birthdate:new Date(),
-	  email:""
+	  email:"",
+    valoracion: []
   }
   constructor(private formBuilder: FormBuilder, private _router: Router, private activedRoute: ActivatedRoute) {
     this.registerForm = this.formBuilder.group({});

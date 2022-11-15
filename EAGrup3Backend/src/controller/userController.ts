@@ -3,6 +3,8 @@ import jwt from 'jsonwebtoken';
 import CryptoJS from 'crypto-js';
 import { Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
+import Valoracion from '../model/Valoracion';
+
 
 
 const register = async (req: Request, res: Response) => {
@@ -19,10 +21,11 @@ const register = async (req: Request, res: Response) => {
 			return res.status(500).send(err);
 		}
 	});
-	const token = jwt.sign({ id: newUser._id }, 'yyt#KInN7Q9X3m&$ydtbZ7Z4fJiEtA6uHIFzvc@347SGHAjV4E', {
-		expiresIn: 60 * 60 * 24
-	});
-	res.status(200).json({ auth: true, token });
+	// const token = jwt.sign({ id: newUser._id }, 'yyt#KInN7Q9X3m&$ydtbZ7Z4fJiEtA6uHIFzvc@347SGHAjV4E', {
+	// 	expiresIn: 60 * 60 * 24
+	// });
+	//  res.status(200).json({ auth: true, token });
+	res.status(201).json({ auth: true});
 };
 
 const login = async (req: Request, res : Response) => {
@@ -38,10 +41,11 @@ const login = async (req: Request, res : Response) => {
 			return res.status(402).json({ auth: false, token: null});
 		}
 
-		const token = jwt.sign({ id: user._id }, 'yyt#KInN7Q9X3m&$ydtbZ7Z4fJiEtA6uHIFzvc@347SGHAjV4E', {
-			expiresIn: 60 * 60 * 24
-		});
-		res.status(201).json({ auth: true, token});
+		// const token = jwt.sign({ id: user._id }, 'yyt#KInN7Q9X3m&$ydtbZ7Z4fJiEtA6uHIFzvc@347SGHAjV4E', {
+		// 	expiresIn: 60 * 60 * 24
+		// });
+		// res.status(201).json({ auth: true, token});
+		res.status(201).json({ auth: true});
 
 	}
 	catch (error) {
@@ -77,6 +81,23 @@ const deleteUser = async (req: Request, res: Response) => {
 	}
 };
 
+ export async function valorar (req:Request, res: Response): Promise<Response> {
+
+		console.log(req.body);
+		const {puntos, comment, _id} = req.body;
+		// const puntos = req.body.puntos;
+		// const comment = req.body.comment;
+		const newValoracion = new Valoracion({puntos, comment})
+
+		const valoracionSaved = await newValoracion.save()
+	//   const user = await User.findByIdAndUpdate(req.params._id, {
+	// 		newValoracion}, {new: true});
+		const user = await User.findOneAndUpdate({_id: req.params._id},{$push: {valoraciones: valoracionSaved}})
+		return res.status(200).json(user);
+
+}
+	
+
 const update = async (req: Request, res: Response) => {
 	try{
 		const name = req.body.name;
@@ -101,5 +122,6 @@ export default {
 	getall,
 	getone,
 	deleteUser,
-	update
+	update,
+	valorar
 };

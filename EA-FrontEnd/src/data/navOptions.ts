@@ -36,6 +36,13 @@ const navOptions = [
         exact: true,
         auth: unAuth()
     },
+    {
+        name: 'Minimo 1',
+        path: '/minimo',
+        icon: '../assets/EventArrow.png',
+        exact: true,
+        auth: unAuth()
+    }
 ];
 
 function unAuth(){
