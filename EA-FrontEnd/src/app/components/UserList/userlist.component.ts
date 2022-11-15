@@ -33,7 +33,10 @@ export class UserListComponent implements OnInit {
 		const response = axios.get(`http://localhost:5432/api/users/`, {
 		}).then((response) => {
       this.listUsers = response.data;
-      // this.listValoraciones = this.listUsers.at;
+      this.listUsers.forEach(element => {
+        this.listValoraciones = element.valoraciones
+      })
+    
 		}).catch((error) => {
 			console.log(error);
 		});

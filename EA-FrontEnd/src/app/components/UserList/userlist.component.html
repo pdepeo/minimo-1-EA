@@ -19,7 +19,7 @@
             <td style="color:rgb(255, 255, 255)">{{User.birthdate}}</td>
             <td style="color:rgb(255, 255, 255)">{{User._id}}</td>
             <td>
-                <tr *ngFor="let Valoracion of listValoraciones">{{Valoracion.comment}}</tr>
+                <tr *ngFor="let Valoracion of listValoraciones">{{Valoracion}}</tr>
             </td>
             <td>
                 <button class="delete-button" (click)="deleteUser(User._id!)">
